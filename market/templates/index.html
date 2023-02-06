@@ -1,7 +1,19 @@
-<h2>Welcome to Market Stock</h2>
+{% comment %} <h2>Welcome to Market Stock</h2> {% endcomment %}
+<h2>Welcome to Survey Application for year of 2022</h2>
 <p>{{ api }}</p>
 
-<h3>{{api.companyName}}</h3>
+
+
+<h1> {{api.empSurvey.name}}</h1>
+<p> Emp No: {{api.empSurvey.empNo}}</p>
+<p> Department: {{api.empSurvey.department}}</p>
+<p> Section: {{api.empSurvey.section}}</p>
+
+<p> Not Satisfied: {{api.responses.notSatisfied}}</p>
+
+
+
+{% comment %} <h3>{{api.companyName}}</h3>
 <p>Latest Price: {{api.latestPrice}}</p>
 <p>Last Trade Time: {{api.lastTradeTime}}</p>
-<p>US Market: {{api.isUSMarketOpen}}</p>
+<p>US Market: {{api.isUSMarketOpen}}</p> {% endcomment %}

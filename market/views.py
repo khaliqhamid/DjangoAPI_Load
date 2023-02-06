@@ -4,7 +4,8 @@ import json
 # Create your views here.
 
 def index(request):
-    api_request= requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_96563a291e3c494ea7ec034295e639f9")
+    # api_request= requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_96563a291e3c494ea7ec034295e639f9")
+    api_request= requests.get("https://portal.gulfcable.com:8443/API/Survey/GetEmpSurveyResponse?empNo=02217&surveyYear=2022-01")
     try:
         api=json.loads(api_request.content)
     except Exception as e:
@@ -12,4 +13,3 @@ def index(request):
     
     return render(request, 'index.html', {'api':api})
 
-# https://cloud.iexapis.com/stable/tops?token=YOUR_TOKEN_HERE&symbols=aapl

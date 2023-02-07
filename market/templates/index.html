@@ -7,25 +7,49 @@
 <div class="container">
   <div class="row">
     <h2>Welcome to Survey Application for year of 2022</h2>
-    <p>{{ api }}</p>
+    {% comment %} <p>{{ api }}</p> {% endcomment %}
 
     <h1>{{ api.empSurvey.name }}</h1>
     <p>Emp No: {{ api.empSurvey.empNo }}</p>
     <p>Department: {{ api.empSurvey.department }}</p>
     <p>Section: {{ api.empSurvey.section }}</p>
 
-    {% comment %} <p>Not Satisfied: {{ api.responses.notSatisfied }}</p>
-    <p>Satisfied: {{ api.responses.satisfied }}</p>
+    {% comment %} <p>Not Satisfied: {{ api.responses.notSatisfied }}</p> 
+  <!--->>  <p>Satisfied: {{ api.responses.satisfied }}</p>
     <p>Very Satisfied: {{ api.responses.verSatisfied }}</p>
-    <p>Satisfied: {{ api.json()['responses'] }}</p> {% endcomment %}
+    <p>Satisfied: {{ api.json()['responses'] }}</p> -->{% endcomment %}
+
   </div>
 
   <div class="row col-12">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css" />
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
+    <table id="table_id2" >
+        <thead class="bg-info">
+            <tr>
+                <th>Year</th>
+                <th>Satisfied</th>
+                <th>Very Satisfied</th>
+                <th>Not Satisfied</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in api.responses %}
+            <tr>
+                <td>{{res.year}} </td>
+                <td>{{res.satisfied}}</td>
+                <td>{{res.verySatisfied}}</td>
+                <td>{{res.notSatisfied}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  <hr> <br>
+  <div class="row col-12">
     <table id="table_id" class="display">
-      <thead>
+      <thead class="bg-danger">
         <tr>
           <th>Year</th>
           <th>Satisfied</th>
@@ -48,6 +72,7 @@
     <script>
       $(document).ready(function () {
         $('#table_id').DataTable()
+        $('#table_id2').DataTable()
       })
     </script>
   </div>

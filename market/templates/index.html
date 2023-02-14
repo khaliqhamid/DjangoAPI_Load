@@ -5,6 +5,12 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+<script>
+  $(document).ready(function () {
+    $('#table_id').DataTable()
+    $('#table_id2').DataTable()
+  })
+</script>
 
 {% comment %} <h2>Welcome to Market Stock</h2> {% endcomment %}
 <div class="container">
@@ -20,29 +26,6 @@
 
   <div class="row col-12">
     <table id="table_id2">
-      <thead class="bg-info">
-        <tr>
-          <th>Year</th>
-          <th>Satisfied</th>
-          <th>Very Satisfied</th>
-          <th>Not Satisfied</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for res in api.responses %}
-          <tr>
-            <td>{{ res.year }}</td>
-            <td>{{ res.satisfied }}</td>
-            <td>{{ res.verySatisfied }}</td>
-            <td>{{ res.notSatisfied }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <hr /> <br />
-  <div class="row col-12">
-    <table id="table_id" class="display">
       <thead class="bg-danger">
         <tr>
           <th>Year</th>
@@ -52,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for response in api.qResponses %}
+        {% for response in api.responses %}
           <tr>
             <td>{{ response.year }}</td>
             <td>{{ response.satisfied }}</td>
@@ -62,13 +45,30 @@
         {% endfor %}
       </tbody>
     </table>
-
-    <script>
-      $(document).ready(function () {
-        $('#table_id').DataTable()
-        $('#table_id2').DataTable()
-      })
-    </script>
+  </div>
+  <hr /> <br />
+  <div class="row col-12">
+    <table id="table_id" class="display">
+      <thead class="bg-warning">
+        <tr>
+          <th>Year</th>
+          <th>Satisfied</th>
+          <th>Very Satisfied</th>
+          <th>Not Satisfied</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for qResponse in api.qResponses %}
+          <tr>
+            <td>{{ qResponse.year }}</td>
+            <td>{{ qResponse.satisfied }}</td>
+            <td>{{ qResponse.verySatisfied }}</td>
+            <td>{{ qResponse.notSatisfied }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
   </div>
   {% block content %}
 

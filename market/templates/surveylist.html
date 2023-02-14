@@ -1,11 +1,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css" />
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <script>
   $(document).ready(function () {
     $('#table_id').DataTable()
-    $('#table_id2').DataTable()
   })
 </script>
 
@@ -16,17 +15,17 @@
 {% bootstrap_javascript %}
 
 {% comment %} <h2>Welcome to Market Stock</h2> {% endcomment %}
-<div class="container-fluid">
-  <div class="row col-12">
-    <table id="table_id2">
-      <thead class="bg-danger">
+<div class="container-fluid w-100">
+  <div class="row justify-content-md-center">
+    <table id="table_id">
+      <thead class="bg-success text-white">
         <tr>
-          <th>Employee Number</th>
+          <th>Emp Number</th>
           <th>Name</th>
           {% comment %} <th>Department</th> {% endcomment %}
           <th>Section</th>
+          {% comment %} <th>Status</th> {% endcomment %}
           <th>Status</th>
-          <th>Image</th>
         </tr>
       </thead>
       <tbody>
@@ -36,16 +35,17 @@
             <td>{{ survey.name }}</td>
             {% comment %} <td>{{ survey.department }}</td> {% endcomment %}
             <td>{{ survey.section }}</td>
-            <td>{{survey.status}}</td>
+            {% comment %} <td>{{ survey.status }}</td> {% endcomment %}
             <td>
               {% if survey.status == "Satisfied" %}
-                <img src="{% static 'images/Satisfied.png' %}" class="image" style="width:20px; margin-bottom:-50px; "> </td> 
+                {% comment %} <img src="{% static 'images/Satisfied.png' %}" class="image-fluid w-25"  > </td>  {% endcomment %}
+                    <img src="{% static 'images/Satisfied.png' %}"     style="width:30px;"/> </td> 
               
               {% elif survey.status == "Not Satisfied" %}
-                <img src="{% static 'images/NotSatisfied.png' %}" class="image" style="width:20px; margin-bottom:-50px; "> </td>
+                    <img src="{% static 'images/NotSatisfied.png' %}"  style="width:30px;" /> </td>
 
               {% elif survey.status == "Very Satisfied" %}
-                <img src="{% static 'images/VerySatisfied.png' %}" class="image" style="width:20px; margin-bottom:-50px; "> </td>
+                    <img src="{% static 'images/VerySatisfied.png' %}" style="width:30px;" /> </td>
 
               {% endif %}
             </td>

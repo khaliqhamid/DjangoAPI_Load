@@ -23,9 +23,10 @@ def test(request):
 
 
 def survey(request):
-    # surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=IT&departmentId=&status=Surveyed&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2022-01")
+    # surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=IT&departmentId=&status=NotSurveyed&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2022-01")
     surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=NULL&departmentId=&status=Surveyed&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2022-01")
-
+    # surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=IT&departmentId=&status=Not Surveyed&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2022-01")
+    
     try:
         surveyApi = json.loads(surveyApi_request.content)
 

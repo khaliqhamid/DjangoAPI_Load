@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'market.apps.MarketConfig',
     'bootstrap5',
+    'jquery',
 ]
 
 MIDDLEWARE = [

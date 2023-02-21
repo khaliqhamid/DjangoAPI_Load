@@ -1,0 +1,87 @@
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css" />
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+
+<script>
+  $(document).ready(function () {
+    {% comment %} $('#table_id').DataTable(); {% endcomment %}
+
+    $('#table_id').DataTable(
+    {
+      {% comment %} paging: false, {% endcomment %}
+      {% comment %} scrollY: 400,
+      searching: false,
+      ordering:  false {% endcomment %}
+    });
+    
+    {% comment %} $("tr:odd").css("background-color", "yellow"); {% endcomment %}
+  });
+  
+</script>
+
+<style>
+  {% comment %} table.dataTable tbody tr.odd { background-color:#F2F2F2; }
+
+  table.dataTable tbody tr.even  { background-color:white; } {% endcomment %}
+</style>
+
+{% load static %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% comment %} <h2>Welcome to Market Stock</h2> {% endcomment %}
+{% block content %}
+
+<div class="container-fluid "> {# w-100#}
+
+  <div class="table-responsive">
+
+   
+
+      <table id="table_id" class="table table-striped" >
+        <thead class="bg-success text-white">
+          <tr>
+            <th>Emp Number</th>
+            <th>Name <span class="arrow-icon"> </span> </th>
+            <th>Department</th>
+            <th>Section </th>
+            <th>Status</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for survey in surveyApi.empSurveys %}
+            <tr>
+              <td>{{ survey.empNo }}</td>
+              <td>{{ survey.name }}</td>
+              <td id="tdDept">{{ survey.department }}</td>
+              <td>{{ survey.section }}</td>
+              <td>
+                {% if survey.status == "Satisfied" %}
+                  <img src="{% static 'images/Satisfied.png' %}" style="width:30px;" /> </td> 
+  
+                {% elif survey.status == "Not Satisfied" %}
+                    <img src="{% static 'images/NotSatisfied.png' %}" style="width:30px;" /> </td>
+  
+                {% elif survey.status == "Very Satisfied" %}
+                    <img src="{% static 'images/VerySatisfied.png' %}" style="width:30px;" /> </td>
+  
+                {% else  %}
+                    {{ survey.status }}
+                {% endif %}
+              </td>
+              {% comment %} <td><a href="{% url 'surveydetail' survey.empNo %}">Detail </a> </td> {% endcomment %}
+              <td><a href="{% url 'surveydetail' survey.empNo , survey.surveyRefenceNo %}">Detail </a> </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+
+
+</div>
+{% endblock %}

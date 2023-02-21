@@ -75,7 +75,7 @@
                 {% endif %}
               </td>
               {% comment %} <td><a href="{% url 'surveydetail' survey.empNo %}">Detail </a> </td> {% endcomment %}
-              <td><a href="{% url 'surveydetail' survey.empNo , survey.surveyRefenceNo %}">Detail </a> </td>
+              <td><a href="{% url 'surveydetail' survey.empNo  survey.surveyRefenceNo %}">Detail </a> </td>
             </tr>
           {% endfor %}
         </tbody>

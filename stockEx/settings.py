@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'market.apps.MarketConfig',
     'bootstrap5',
     'jquery',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [

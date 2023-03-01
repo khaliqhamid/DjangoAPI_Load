@@ -37,6 +37,42 @@
 {% block content %}
 
 <div class="container-fluid "> {# w-100#}
+<form method="POST">
+  {% csrf_token %}
+    {% comment %} <table class="table table-striped mt-5">
+   <thead>
+      <tr>
+        <th>Employee Surveyed</th>
+        <th>Employee Not Surveyed</th>
+        <th>SERACH</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <tr>
+        <td> {% endcomment %}
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radioSurveyed" name="surveyStatus" value="Surveyed" checked>Employee Surveyed
+            <label class="form-check-label" for="radio1"></label>
+          </div>
+        {% comment %} </td>
+        <td>  {% endcomment %}
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radioNotSurveyed" name="surveyStatus" value="Not Surveyed">Employee Not Surveyed
+            <label class="form-check-label" for="radio2"></label>
+          </div>
+        {% comment %} </td>
+        <td>
+          <input type="submit" value="serach">
+        </td>
+      </tr>
+    </tbody>
+  </table>  {% endcomment %}
+    <div class="form-check">
+      <input type="submit" value="serach">
+    </div>
+</form>
+  
+ 
 
   <div class="table-responsive">
 

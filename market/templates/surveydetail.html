@@ -30,16 +30,16 @@
        <tr>
         <th>Employee No </th>
         <th>Name</th>
-        <th>Department</th>
+        <th>Department - Section</th>
       </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-        {{ survey.empNo }}
+              {{ survey.empNo }}
           </td>
           <td>{{ survey.name }}</td>
-          <td>{{ survey.department }}- {{ survey.section }}</td>
+          <td>{{ survey.department }} - {{ survey.section }}</td>
         </tr>
       </tbody>
     </table>
@@ -258,4 +258,4 @@
     </div>
   </div>
 
-<h3>{{surveydetail.empSurvey}}</h3>
+{% comment %} <h3>{{surveydetail.empSurvey}}</h3> {% endcomment %}

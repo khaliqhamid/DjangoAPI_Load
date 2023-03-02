@@ -45,8 +45,8 @@ def test(request):
 def survey(request):
     if request.method=="POST":
         status = request.POST.get('surveyStatus')
-        # surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=NULL&departmentId=&status=" + status + "&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2021-01" )
-        surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=NULL&departmentId=&status=Surveyed&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2021-01" )
+        surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=NULL&departmentId=&status=" + status + "&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2021-01" )
+        # surveyApi_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=NULL&departmentId=&status=Surveyed&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2021-01" )
         try:
               surveyApi = json.loads(surveyApi_request.content)
         except Exception as e:

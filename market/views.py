@@ -7,6 +7,10 @@ empno=0
 
 
 def index(request):
+    return render(request, 'index.html')
+     
+
+def index2(request):
     # api_request= requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_96563a291e3c494ea7ec034295e639f9")
     api_request= requests.get("https://portal.gulfcable.com:8443/API/Survey/GetEmpSurveyResponse?empNo=02217&surveyYear=2022-01")
     # api_request = requests.get("https://portal.gulfcable.com:8443/API/Survey/GetSurveyStatusV2?department=IT&departmentId=&status=Surveyed&question&questionId=0&chartQuestionLabel=&chartFor=&SurveyYear=2022-01")

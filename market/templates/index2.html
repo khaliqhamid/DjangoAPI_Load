@@ -1,0 +1,76 @@
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css" />
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<script>
+  $(document).ready(function () {
+    $('#table_id').DataTable()
+    $('#table_id2').DataTable()
+  })
+</script>
+
+{% comment %} <h2>Welcome to Market Stock</h2> {% endcomment %}
+<div class="container">
+  <div class="row">
+    <h2>Welcome to Survey Application for year of 2022</h2>
+    {% comment %} <p>{{ api }}</p> {% endcomment %}
+
+    <h1>{{ api.empSurvey.name }}</h1>
+    <p>Emp No: {{ api.empSurvey.empNo }}</p>
+    <p>Department: {{ api.empSurvey.department }}</p>
+    <p>Section: {{ api.empSurvey.section }}</p>
+  </div>
+
+  <div class="row col-12">
+    <table id="table_id2">
+      <thead class="bg-danger">
+        <tr>
+          <th>Year</th>
+          <th>Satisfied</th>
+          <th>Very Satisfied</th>
+          <th>Not Satisfied</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for response in api.responses %}
+          <tr>
+            <td>{{ response.year }}</td>
+            <td>{{ response.satisfied }}</td>
+            <td>{{ response.verySatisfied }}</td>
+            <td>{{ response.notSatisfied }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <hr /> <br />
+  <div class="row col-12">
+    <table id="table_id" class="display">
+      <thead class="bg-warning">
+        <tr>
+          <th>Year</th>
+          <th>Satisfied</th>
+          <th>Very Satisfied</th>
+          <th>Not Satisfied</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for qResponse in api.qResponses %}
+          <tr>
+            <td>{{ qResponse.year }}</td>
+            <td>{{ qResponse.satisfied }}</td>
+            <td>{{ qResponse.verySatisfied }}</td>
+            <td>{{ qResponse.notSatisfied }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </div>
+  {% block content %}
+
+  {% endblock %}
+</div>

@@ -1,76 +1,261 @@
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css" />
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+{% load static %}
 
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-<script>
-  $(document).ready(function () {
-    $('#table_id').DataTable()
-    $('#table_id2').DataTable()
-  })
-</script>
+{% load mathfilters %}
+<style>
+  .bgColor {
+    background-color: #f8f9fa;
+    font-style: italic;
+  }
+  .imgHW
+  {
+    width:30px;
+  }
+</style>
 
-{% comment %} <h2>Welcome to Market Stock</h2> {% endcomment %}
-<div class="container">
+<div class="container-fluid border border-black mt-5">
+  {% with surveydetail.empSurvey as survey %}
+
   <div class="row">
-    <h2>Welcome to Survey Application for year of 2022</h2>
-    {% comment %} <p>{{ api }}</p> {% endcomment %}
-
-    <h1>{{ api.empSurvey.name }}</h1>
-    <p>Emp No: {{ api.empSurvey.empNo }}</p>
-    <p>Department: {{ api.empSurvey.department }}</p>
-    <p>Section: {{ api.empSurvey.section }}</p>
-  </div>
-
-  <div class="row col-12">
-    <table id="table_id2">
-      <thead class="bg-danger">
-        <tr>
-          <th>Year</th>
-          <th>Satisfied</th>
-          <th>Very Satisfied</th>
-          <th>Not Satisfied</th>
-        </tr>
+    <div class="col-12 border">
+      <div class="card text-white bg-success mb-4">
+          <div class="card-body">
+              <h2 class="text-center">Employee Satisfaction Survey : {{ survey.surveyRefenceNo|slice:'0:4' }}</h2>
+          </div>
+      </div>
+    <table class="table table-strip table-hover">
+      <thead>
+       <tr>
+        <th>Employee No </th>
+        <th>Name</th>
+        <th>Department - Section</th>
+      </tr>
       </thead>
       <tbody>
-        {% for response in api.responses %}
-          <tr>
-            <td>{{ response.year }}</td>
-            <td>{{ response.satisfied }}</td>
-            <td>{{ response.verySatisfied }}</td>
-            <td>{{ response.notSatisfied }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <hr /> <br />
-  <div class="row col-12">
-    <table id="table_id" class="display">
-      <thead class="bg-warning">
         <tr>
-          <th>Year</th>
-          <th>Satisfied</th>
-          <th>Very Satisfied</th>
-          <th>Not Satisfied</th>
+          <td>
+              {{ survey.empNo }}
+          </td>
+          <td>{{ survey.name }}</td>
+          <td>{{ survey.department }} - {{ survey.section }}</td>
         </tr>
-      </thead>
-      <tbody>
-        {% for qResponse in api.qResponses %}
-          <tr>
-            <td>{{ qResponse.year }}</td>
-            <td>{{ qResponse.satisfied }}</td>
-            <td>{{ qResponse.verySatisfied }}</td>
-            <td>{{ qResponse.notSatisfied }}</td>
-          </tr>
-        {% endfor %}
       </tbody>
     </table>
-    
-  </div>
-  {% block content %}
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">01: Company provides tools and technologies you needed to do your job well? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.toolsTechnology}}.png" class="imgHW"/>
+      </div>
+    </div>
 
-  {% endblock %}
-</div>
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">02: Safety measures and PPE at work place are adequate? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.safetyPPE}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">03: Your job responsibilities are clearly defined? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.jobResponsibility}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">04: Training provided is adequate to perform your job? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.providedTraining}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">05: Your superiors communicate required information effectively and in a timely manner?</h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.superiorsCommunication}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">06: Is work distributed evenly across your team? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.workDistribution}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">07: Relationship with your colleagues? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.colleaguesRelationship}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">08: Relationship with your managers? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.managersRelationship}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">09: Are you satisfied with the compensation provided to you by the organization? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.organizationCompensation}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">10: Are you satisfied with Healthcare and insurance coverage provided by company? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.healthCareInsurance}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">11: How proud do you feel of the brand GC that you work with?</h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.gcBrandProud}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">12: Do you feel your job Secured? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.jobSecurity}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-11">
+        <h6 class="bgColor">13: Are you satisfied with your job overall? </h6>
+      </div>
+      <div class="col-1">
+        <img src="{% static 'images/'%}{{survey.jobSatisfaction}}.png" class="imgHW"/>
+      </div>
+    </div>  
+
+    <br />
+    <div class="row">
+     <h6 class="bgColor">14: Enlist three things you are extremely dissatisfied about this organization or your department.</h6>
+      <div class="col-4 text-center border">
+        <h6>{{ survey.disSatisfied3Things1 }}</h6>
+      </div>
+      <div class="col-4 text-center border">
+        <h6>{{ survey.disSatisfied3Things2 }}</h6>
+      </div>
+      <div class="col-4 text-center border">
+        <h6>{{ survey.disSatisfied3Things3 }}</h6>
+      </div> 
+
+     {% comment %}
+       <div class="col-12 border">
+       <table class="table table-strip">
+         <thead>
+           <tr>
+             <th><h6>14: Enlist three things you are extremely dissatisfied about this organization or your department.</h6></th>
+           </tr>
+         </thead>
+       </div>
+         <tbody>
+           <tr>
+             <td>
+               <h6>{{ survey.disSatisfied3Things1 }}</h6>
+             </td>
+             <td>
+               <h6>{{ survey.disSatisfied3Things2 }}</h6>
+             </td>
+             <td>
+               <h6>{{ survey.disSatisfied3Things3 }}</h6>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     {% endcomment %}
+
+    </div>
+
+    <br />
+    <div class="row">
+      <h6 class="bgColor">15: Enlist three things you would like to suggest to serves as an improvement in your department/organisation</h6>
+      <div class="col-4 text-center border">
+        <h6>{{ survey.suggest3Things1 }}</h6>
+      </div>
+      <div class="col-4 text-center border">
+        <h6>{{ survey.suggest3Things2 }}</h6>
+      </div>
+      <div class="col-4 text-center border">
+        <h6>{{ survey.suggest3Things3 }}</h6>
+      </div>
+    </div>
+
+    <br />
+    <div class="row">
+      <h6 class="bgColor">16: Any other issues not included in this survey that need to be addressed?</h6>
+      <div class="col-12 text-center border">
+        <h6>{{ survey.otherIssues }}</h6>
+      </div>
+    </div>
+  {% endwith %}
+  <br />
+
+    <div>
+  {% comment %} {% with surveydetail.responses as response %} {% endcomment %}
+
+  <div class="row">
+    <div class="col-6 border">
+     
+      <div class="card text-white bg-info mb-4">
+        <div class="card-body">
+            <h6 class="card-title">Survey Satisfaction Status</h6>
+            <p class="card-text">Employee survey response by answers</p>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th><img class="imgHW" src="{% static 'images/Satisfied.png' %}" /></th>
+            <th><img src="{% static 'images/verySatisfied.png' %}" class="imgHW"/></th>
+            <th><img src="{% static 'images/notSatisfied.png' %}" class="imgHW"/></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for response in surveydetail.responses %}
+          <tr>
+            <td><h3>{{response.satisfied    |mul:13|floatformat:0}} </h3></td>
+            <td><h3>{{response.verySatisfied|mul:13|floatformat:0}} </h3></td>
+            <td><h3>{{ response.notSatisfied|mul:13|floatformat:0}} </h3></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% comment %} <h3>{{surveydetail.empSurvey}}</h3> {% endcomment %}

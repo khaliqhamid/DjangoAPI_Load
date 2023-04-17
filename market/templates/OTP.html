@@ -1,0 +1,26 @@
+
+
+
+
+<h1> Welcome to OTP Verification </h1>
+
+   {% comment %} <p>{{ userApi }}</p>  {% endcomment %}
+   <p> Is Employee Valid:  {{ userApi.isValidEmpNo }} </p> 
+
+
+    <P>Login with OTP Or Company Badge No.</P>
+
+
+{% comment %} 
+ {% with userApi.userApi as user %}
+
+ IsValidUser: {{ user.isValidEmpNo }}
+ {{user.mobileNo}}
+
+{% endwith %} 
+
+
+{% for usr in userApi.userApi %}
+    IsValidUser: {{ usr.isValidEmpNo }}
+    {{usr.mobileNo}}
+{% endfor %} {% endcomment %}

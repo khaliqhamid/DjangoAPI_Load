@@ -3,8 +3,36 @@ import requests
 import json
 # Create your views here.
 
-empno=0
 
+def verify(request):
+    if request.method =="POST":
+        empno = request.POST.get('EmployeeNo')
+        
+        # parameters = {
+        #    "status": empno,
+        # }
+        # emp_no = f"{empno:05d}" 
+        padded_num = '{:0>5}'.format(empno)
+        
+        # verifyEmp = requests.get("https://portal.gulfcable.com:8443/api/Survey/ValidateEmployee", params = parameters)
+        verifyEmp = requests.get("https://portal.gulfcable.com:8443/api/Survey/ValidateEmployee?empNo=" + padded_num)
+        # verifyEmp = requests.get("https://portal.gulfcable.com:8443/api/Survey/ValidateEmployee?empNo=02217")
+   
+        try:
+            userInfo = json.loads(verifyEmp.content)
+            # if user.isValidEmpNo true:
+                
+            #     user= "Data not found"
+            
+        except Exception as e:
+            # api.raise_for_status()
+            userApi = "Error, data not loading"   
+   
+        return render(request, 'OTP.html', {'userApi': userInfo})
+    else:
+        return render(request, 'verify.html')
+
+    
 
 def index(request):
     return render(request, 'index.html')

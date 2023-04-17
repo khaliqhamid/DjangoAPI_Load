@@ -1,0 +1,109 @@
+{% comment %} 
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+  <form method="POST" style="max-width:500px;margin:auto">
+    {% csrf_token %} 
+  <h2>Employee Validation Form</h2>
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <input class="input-field" type="text" placeholder="Enter Employee Number" name="EmployeeNo">
+  </div>
+
+  <button type="submit" class="btn">Validate</button>
+</form>
+
+</body>
+</html> {% endcomment %}
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css" />
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% load static %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% comment %} <h2>Welcome to Market Stock</h2> {% endcomment %}
+{% block content %}
+
+<div class="container-fluid "> {# w-100#}
+<form method="POST">
+  {% csrf_token %}
+  <table class="table table-striped mt-5">
+   <thead>
+      <tr>
+        <th>Employee Number</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <tr>
+        <td> 
+          <div class="form-check">
+            <input type="text" id="empno" name="EmployeeNo" placeholder="Employee No" >
+            <input type="submit"  value="Validate">
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+</form>
+</div>
+{% endblock %}
+
+

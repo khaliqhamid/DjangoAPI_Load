@@ -91,9 +91,9 @@
             <td>
               {% if survey.status == "Satisfied" %}
                 <img src="{% static 'images/Satisfied.png' %}" style="width:30px;" />
-               {% elif survey.status == "Not Satisfied" %}
+               {% elif survey.status == "NotSatisfied" %}
                   <img src="{% static 'images/NotSatisfied.png' %}" style="width:30px;" />
-               {% elif survey.status == "Very Satisfied" %}
+               {% elif survey.status == "VerySatisfied" %}
                   <img src="{% static 'images/VerySatisfied.png' %}" style="width:30px;" />
                {% else  %}
                   {{ survey.status }}
